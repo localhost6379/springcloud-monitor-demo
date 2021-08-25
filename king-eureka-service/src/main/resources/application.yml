@@ -1,0 +1,22 @@
+server:
+  port: 8761  #eureka默认端口号为8761
+
+
+eureka:
+  instance:
+    hostname: 127.0.0.1 #eureka 服务所在的地址
+  client:
+    register-with-eureka: false # 表示不向注册中心注册自己
+    fetch-registry: false # 是否检索服务，表示我自己就是一个注册中心，我的职责就是维护服务的，我又不需要调用别的服务，所以我不需要检索服务
+    service-url: #告诉所有的客户端，注册的地址url
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

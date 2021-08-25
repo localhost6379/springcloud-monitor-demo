@@ -1,0 +1,23 @@
+server:
+  port: 8090
+
+
+spring:
+  application:
+    name: king-admin-security-service
+  security: # 配置登录用户名和密码
+    user:
+      name: admin
+      password: admin
+  boot: # 不显示admin-security-server的监控信息
+    admin:
+      discovery:
+        ignored-services: ${spring.application.name}
+
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/

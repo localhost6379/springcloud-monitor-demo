@@ -1,0 +1,36 @@
+server:
+  port: 8091
+
+
+spring:
+  application:
+    name: king-order-service
+
+# 整合了注册中心后不需要下面的配置
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9301 # admin-server的地址
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 设置端点暴露的哪些内容，默认["health","info"]，设置"*"代表暴露所有可访问的端点
+        include: '*'
+  endpoint:
+    health:
+      # 端点健康情况，默认值"never"，设置为"always"可以显示硬盘使用情况和线程情况
+      show-details: always
+
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+
+

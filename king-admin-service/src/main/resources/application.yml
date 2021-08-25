@@ -1,0 +1,47 @@
+server:
+  port: 8090
+
+
+spring:
+  application:
+    name: king-admin-service
+  boot:
+    admin:
+      notify:
+        mail:
+          # 若是采用SpringBoot Admin自带的邮件通知，那么不能按照业务进行分组通知，需要我们关闭自带的邮件通知，手动进行通知
+          enabled: false # 关闭admin自带的邮件通知
+          from: xxx@qq.com # 谁发送的
+          to: xxx@126.com # 发送给谁
+      ui:
+        title: 这是服务监控
+  # 做完以下配置后，当我们已注册的客户端的状态从 UP 变为 OFFLINE 或其他状态，服务端就会自动将电子邮件发送到下面配置的地址。
+  mail:
+    host: smtp.example.com
+    username: admin@example.com # 邮箱地址
+    password: xxxxxxxxxxxxxxxxx # 授权码
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+
+  freemarker:
+    # 配置邮件模板
+    settings:
+      classic_compatible: true # 解决模板空指针问题
+
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+
+# Spring Boot Admin 提供了基于 Web 页面的方式实时查看服务输出的本地日志，前提是服务中配置了 logging.file。
+logging:
+  file:
+    path: adminlog
